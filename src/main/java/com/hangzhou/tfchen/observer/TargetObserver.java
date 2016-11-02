@@ -25,6 +25,6 @@ public class TargetObserver implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println(name + ((TargetObservable) o).getContent());
+        System.out.println("观察者" + this.getName() + ":" + ((TargetObservable) o).getContent());
     }
 }
