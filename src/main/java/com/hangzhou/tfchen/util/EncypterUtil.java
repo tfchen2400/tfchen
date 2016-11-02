@@ -46,6 +46,5 @@ public class EncypterUtil {
 		    System.out.println(encrypted);
 		    System.out.println(decrypted);
 		}
-		
 	}
 }
