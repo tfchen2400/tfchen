@@ -19,6 +19,7 @@
     <!-- 隐式地向Spring容器注册了注解处理器 -->
     <context:annotation-config/>
     <context:component-scan base-package="com.hangzhou.tfchen.webservice"/>
+    <context:component-scan base-package="com.hangzhou.tfchen.dao"/>
 
     <!-- 用来获取property里的值 -->
     <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
@@ -56,9 +57,14 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+       	<!-- 
         <property name="url" value="jdbc:oracle:thin:@10.168.2.3:1521:warehouse" />
         <property name="username" value="lc_tk" />
         <property name="password" value="lc_tk" />
+         -->
+         <property name="url" value="jdbc:oracle:thin:@192.168.60.8:1521:orcl1" />
+        <property name="username" value="chentf" />
+        <property name="password" value="chentf" />
         <property name="maxActive" value="100"></property>
         <property name="maxIdle" value="30"></property>
         <property name="minIdle" value="5"></property>
