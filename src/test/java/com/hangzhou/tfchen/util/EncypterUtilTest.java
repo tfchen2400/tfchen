@@ -1,20 +1,20 @@
-package com.hangzhou.tfchen.util.test;
+package com.hangzhou.tfchen.util;
 
-import com.hangzhou.tfchen.util.EncypterUtil;
+import org.junit.Assert;
+import org.junit.Test;
 
-import junit.framework.TestCase;
-
-public class EncypterUtilTest extends TestCase {
+public class EncypterUtilTest {
 
 	public EncypterUtilTest() {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Test
 	public void testEncypter() {
 		String str = "hzmc";
 		EncypterUtil encypterUtil = EncypterUtil.getInstacne();
 		String enstr = encypterUtil.jasyptEncrypt(str);
 		String destr = encypterUtil.jasyptDecrypt(enstr);
-		assertEquals(str, destr);
+		Assert.assertEquals(str, destr);
 	}
 }

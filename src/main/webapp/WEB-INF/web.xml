@@ -11,7 +11,7 @@
         <param-value>classpath:log4j.properties</param-value>
     </context-param>
 
-    <welcome-file-list>
+    <welcome-file-list> 
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 

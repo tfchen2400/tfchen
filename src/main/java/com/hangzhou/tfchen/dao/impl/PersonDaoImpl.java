@@ -1,5 +1,7 @@
 package com.hangzhou.tfchen.dao.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.hangzhou.tfchen.bean.Person;
 import com.hangzhou.tfchen.dao.IPersonDao;
 
@@ -10,6 +12,7 @@ import com.hangzhou.tfchen.dao.IPersonDao;
  * @描述：
  * @注意事项：
  */
+@Service
 public class PersonDaoImpl extends BaseDao implements IPersonDao {
     @Override
     public void savePerson(Person person) {
