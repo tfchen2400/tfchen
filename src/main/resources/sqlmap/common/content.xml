@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="content">
+
+    <typeAlias alias="content" type="com.hangzhou.tfchen.common.bean.Content"/>
+
+    <select id="findContent" resultClass="content">
+        SELECT id, name, type, content, img, url, createDate, modifyDate
+        FROM common_content
+        WHERE id = #value#
+    </select>
+</sqlMap>

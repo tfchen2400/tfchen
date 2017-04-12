@@ -2,12 +2,11 @@ package com.hangzhou.tfchen.dao;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hangzhou.tfchen.bean.Person;
+
 
 /**
  * 
@@ -20,18 +19,11 @@ import com.hangzhou.tfchen.bean.Person;
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class PersonDaoTest extends AbstractJUnit4SpringContextTests {
 
-	@Autowired
-	private IPersonDao personDao;
+
 
 	public PersonDaoTest() {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Test
-	public void savePersonTest() {
-		Person person = new Person();
-		person.setName("chentf");
-		personDao.savePerson(person);
-	}
 
 }

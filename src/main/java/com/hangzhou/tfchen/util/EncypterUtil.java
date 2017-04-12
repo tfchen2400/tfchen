@@ -12,7 +12,7 @@ public class EncypterUtil {
 
 	private static EncypterUtil encypterUtil;
 
-	private static final String MASTER_KEY = "nbg";
+	private static final String MASTER_KEY = "tfchen5211";
 
 	private BasicTextEncryptor textEncryptor;
 
@@ -37,7 +37,7 @@ public class EncypterUtil {
 	}
 	
 	public static void main(String[] args) {
-		String ss = "hahah";
+		String ss = "tfchen5211";
 		EncypterUtil encypterUtil = new EncypterUtil();
 		
 		for (int i = 0; i < 100; i++) {

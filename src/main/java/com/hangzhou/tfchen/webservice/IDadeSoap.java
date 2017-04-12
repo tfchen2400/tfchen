@@ -1,6 +1,6 @@
 package com.hangzhou.tfchen.webservice;
 
-import com.hangzhou.tfchen.bean.Person;
+
 
 /**
  * @author chentf(水言Dade)
@@ -10,5 +10,5 @@ import com.hangzhou.tfchen.bean.Person;
  * @注意事项：
  */
 public interface IDadeSoap {
-    public Person method1(Person s);
+
 }
