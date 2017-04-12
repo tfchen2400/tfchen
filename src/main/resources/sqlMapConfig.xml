@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 <sqlMapConfig>
-	<settings cacheModelsEnabled="true" enhancementEnabled="true" lazyLoadingEnabled="true" errorTracingEnabled="true" maxRequests="32" maxSessions="10"
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" lazyLoadingEnabled="false" errorTracingEnabled="true" maxRequests="32" maxSessions="10"
 		maxTransactions="5" useStatementNamespaces="false" />
 	<sqlMap resource="sqlmap/common/content.xml" />
 	<sqlMap resource="sqlmap/common/user.xml" />
+	<sqlMap resource="sqlmap/person.xml" />
+	<sqlMap resource="sqlmap/temp.xml" />
+	<sqlMap resource="sqlmap/son.xml" />
 </sqlMapConfig>
