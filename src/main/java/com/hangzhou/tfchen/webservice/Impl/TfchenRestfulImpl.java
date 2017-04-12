@@ -28,4 +28,46 @@ public class TfchenRestfulImpl implements ITfchenRestful {
         return "hello" + par;
     }
 
+    @Override
+    @GET
+    @Path("/booleanMethod")
+    public Boolean booleanMethod() {
+        return Boolean.FALSE;
+    }
+
+    @Override
+    @GET
+    @Path("/integerMethod")
+    public Integer integerMethod() {
+        return new Integer(100);
+    }
+
+    @Override
+    @GET
+    @Path("/doubleMethod")
+    public Double doubleMethod() {
+        return new Double(3.1415926);
+    }
+
+    @Override
+    @GET
+    @Path("/boolean2Method")
+    public boolean boolean2Method() {
+        return true;
+    }
+
+    @Override
+    @GET
+    @Path("/intMethod")
+    public int intMethod() {
+        return 12;
+    }
+
+    @Override
+    @GET
+    @Path("/double2Method")
+    public double double2Method() {
+        return 3.333;
+    }
+
 }

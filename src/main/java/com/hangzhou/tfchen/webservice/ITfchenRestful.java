@@ -9,5 +9,19 @@ package com.hangzhou.tfchen.webservice;
  */
 public interface ITfchenRestful {
     public String methodOnePost(String par);
+
     public String methodOneGet(String par);
+
+    public Boolean booleanMethod();
+
+    public Integer integerMethod();
+
+    public Double doubleMethod();
+
+    public boolean boolean2Method();
+
+    public int intMethod();
+
+    public double double2Method();
+
 }

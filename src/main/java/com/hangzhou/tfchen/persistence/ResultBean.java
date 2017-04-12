@@ -16,6 +16,7 @@ public class ResultBean implements Serializable {
     private static final long serialVersionUID = -8605566028940170996L;
     private String msgId;
     private String msgDesc;
+    private String success;
     private HashMap<String, Object> result = new HashMap<String, Object>();
 
     public ResultBean() {
@@ -51,4 +52,12 @@ public class ResultBean implements Serializable {
         this.result = result;
     }
 
+    public String getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(String success) {
+        this.success = success;
+    }
 }
+

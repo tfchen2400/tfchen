@@ -1,6 +1,14 @@
 package com.hangzhou.tfchen.test;
 
+import com.hangzhou.tfchen.persistence.ResultBean;
+import net.sf.json.JSONObject;
+
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author chentf(水言Dade)
@@ -11,22 +19,22 @@ import java.io.*;
  */
 public class A {
     public static void main(String[] args) {
-        String fileName = "D:" + File.separator + "hello.txt";
-        File f = new File(fileName);
-        try {
-            InputStream inputStream = new FileInputStream(f);
-            System.out.println("------" + inputStream.read() + "------------");
-            int i = -1;
-            do {
-                i = inputStream.read();
-                System.out.println(i);
-            } while (i > 0);
-            System.out.println("---");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        String mqinfo = "tcp://192.168.200.151:61615?wireFormat.maxInactivityDuration=0&wireFormat.maxInactivityDurationInitalDelay=30000;1;5";
+//        String[] mqarr = mqinfo.split(";");
+//        String[] tmparr = mqarr[0].split("\\?")[0].split("\\/\\/")[1].split(":");
+//        Integer logonNumber = Integer.valueOf(mqarr[1]);
+//        Integer accessNumber = Integer.valueOf(mqarr[2]);
+//        Map<String,Object> mqm=new HashMap<String, Object>();
+//        mqm.put("url", mqarr[0]);
+//        mqm.put("host",tmparr[0]);
+//        mqm.put("port",tmparr[1]);
+////        mqm.put("queueName", "logon"+(i+1));
+//        mqm.put("type", "logon");
+//        ResultBean resultBean = new ResultBean();
+//        System.out.println(resultBean.hashCode());
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(dateFormat.format(calendar.getTime()));
     }
 
 

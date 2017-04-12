@@ -1,25 +1,27 @@
 package com.hangzhou.tfchen.solr;
 
 import com.hangzhou.tfchen.slor.bean.Index;
+import net.sf.json.JSONObject;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.client.solrj.request.CoreAdminRequest;
 import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
+import org.apache.solr.common.params.CoreAdminParams;
 import org.apache.solr.common.params.ModifiableSolrParams;
 import org.apache.solr.common.params.SolrParams;
+import org.apache.solr.common.util.NamedList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author chentf(水言Dade)
@@ -34,7 +36,7 @@ public class ServerTest {
 
     private HttpSolrServer httpServer;
 
-    private static final String DEFAULT_URL = "http://192.168.60.36:8080/solr/chentf";
+    private static final String DEFAULT_URL = "http://192.168.200.101:8983/solr/0_1472366654143";
 
     @Before
     public void init() {
@@ -61,9 +63,32 @@ public class ServerTest {
      * @createDate 2011-10-21 上午09:48:18
      */
     @Test
-    public void server() {
+    public void server() throws IOException, SolrServerException {
         fail(server);
         fail(httpServer);
+        query("*:*");
+//        CoreAdminRequest coreAdminRequest = new CoreAdminRequest();
+//        CoreAdminParams.CoreAdminAction coreAdminAction = CoreAdminParams.CoreAdminAction.STATUS;
+//        coreAdminRequest.setAction(coreAdminAction);
+//        NamedList<Object> namedList = server.request(coreAdminRequest);
+//        Iterator iterator = namedList.iterator();
+//        while (iterator.hasNext()) {
+//            Map.Entry entry = (Map.Entry) iterator.next();
+//            if (entry.getKey().equals("status")) {
+//                NamedList<Object> status = (NamedList<Object>) entry.getValue();
+//                Iterator statusIterator = status.iterator();
+//                while (statusIterator.hasNext()) {
+//                    Map.Entry entryStatus = (Map.Entry) statusIterator.next();
+//                    String coreName = (String) entryStatus.getKey();
+//                    if (coreName.startsWith("0_") || coreName.startsWith("1_"))
+//                        ;
+//                    System.out.println(entryStatus.getKey());
+//                }
+//            }
+//
+//        }
+//        System.out.println("here");
+
     }
 
     /**
@@ -426,6 +451,7 @@ public class ServerTest {
 
     /**
      * <b>function:</b> 分片查询， 可以统计关键字及出现的次数、或是做自动补全提示
+     *
      * @author hoojo
      * @createDate 2011-10-20 下午04:54:25
      */

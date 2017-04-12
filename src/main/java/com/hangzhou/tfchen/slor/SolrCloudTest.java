@@ -66,8 +66,8 @@ public class SolrCloudTest {
                 log.info("docs info:" + docs + "\n");
 //                System.out.println("docs length " + docs.size());
                 solrServer.add(docs);
-                solrServer.commit();
             }
+            solrServer.commit();
         } catch (SolrServerException e) {
             System.out.println("Add docs Exception !!!");
             e.printStackTrace();
