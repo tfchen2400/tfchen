@@ -1,4 +1,4 @@
-package com.hangzhou.tfchen.dao.impl;
+package com.hangzhou.tfchen.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

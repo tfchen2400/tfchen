@@ -20,6 +20,8 @@
     <context:annotation-config/>
     <context:component-scan base-package="com.hangzhou.tfchen.webservice"/>
     <context:component-scan base-package="com.hangzhou.tfchen.dao"/>
+    <context:component-scan base-package="com.hangzhou.tfchen.common.dao"/>
+    <context:component-scan base-package="com.hangzhou.tfchen.common.service"/>
 
     <!-- 用来获取property里的值 -->
     <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />

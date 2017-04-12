@@ -20,7 +20,9 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="js/bootstrap/js/bootstrap.min.js"></script>
-
+    <script>
+        location.href = "login";
+    </script>
 </head>
 <body>
 <div class="container">

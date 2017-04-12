@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="user">
+
+    <typeAlias alias="user" type="com.hangzhou.tfchen.common.bean.User"/>
+
+    <select id="findUserByCondition" resultClass="user">
+        SELECT id, account, name, age, phone, password, img, type, STATUS, createDate, modifyDate
+        FROM common_user
+        WHERE account = #account#
+    </select>
+</sqlMap>

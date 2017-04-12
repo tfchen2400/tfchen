@@ -1,5 +1,6 @@
 package com.hangzhou.tfchen.dao;
 
+import com.hangzhou.tfchen.bean.Person;
 import com.hangzhou.tfchen.bean.Son;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -10,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hangzhou.tfchen.bean.Person;
+
 
 import java.util.Date;
 import java.util.List;
@@ -63,24 +64,7 @@ public class PersonDaoTest extends AbstractJUnit4SpringContextTests {
         }
     }
 
-    @Test
-    public void selectPersonContantSonWhereIdBelowTest() {
-        Long start = System.currentTimeMillis();
-        int id = 50000;
-        List<Person> personList = personDao.findPersonContantSonWhereIdBelow(id);
-//        System.out.println(JSONArray.fromObject(personList));
-        Long end = System.currentTimeMillis();
-        System.out.println(end - start);
-        start = end;
-        List<Person> personList1 = personDao.findPersonContantSonWhereIdBelow2(id);
-        end = System.currentTimeMillis();
-        System.out.println(end - start);
-    }
 
-    @Test
-    public void findWithRowHandlerTest() {
-        int id = 19838;
-        personDao.findWithRowHandler(id);
-    }
+
 
 }
