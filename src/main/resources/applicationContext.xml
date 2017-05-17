@@ -19,80 +19,89 @@
     <!-- 隐式地向Spring容器注册了注解处理器 -->
     <context:annotation-config/>
     <context:component-scan base-package="com.hangzhou.tfchen.webservice"/>
-    <context:component-scan base-package="com.hangzhou.tfchen.dao"/>
     <context:component-scan base-package="com.hangzhou.tfchen.common.dao"/>
     <context:component-scan base-package="com.hangzhou.tfchen.common.service"/>
 
-    <!-- 用来获取property里的值 -->
-    <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
+
+
     <!-- 通过注解 @value注入配置文件的值 -->
-    <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer" />
+    <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"/>
 
     <!-- CXF Web Service -->
-    <import resource="classpath:META-INF/cxf/cxf.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-    <bean id="tfchenSoapImpl" class="com.hangzhou.tfchen.webservice.Impl.TfchenSoapImpl" />
-    <jaxws:endpoint id="tfchenService" address="/tfchenService" implementor="#tfchenSoapImpl" />
+    <bean id="tfchenSoapImpl" class="com.hangzhou.tfchen.webservice.Impl.TfchenSoapImpl"/>
+    <jaxws:endpoint id="tfchenService" address="/tfchenService" implementor="#tfchenSoapImpl"/>
 
-    <bean id="dadeSoapImpl" class="com.hangzhou.tfchen.webservice.Impl.DadeSoapImpl" />
-    <jaxws:endpoint id="dadeService" address="/dadeService" implementor="#dadeSoapImpl" />
+    <bean id="dadeSoapImpl" class="com.hangzhou.tfchen.webservice.Impl.DadeSoapImpl"/>
+    <jaxws:endpoint id="dadeService" address="/dadeService" implementor="#dadeSoapImpl"/>
 
-    <bean id="tfchenRestfulImpl" class="com.hangzhou.tfchen.webservice.Impl.TfchenRestfulImpl" />
+    <bean id="tfchenRestfulImpl" class="com.hangzhou.tfchen.webservice.Impl.TfchenRestfulImpl"/>
     <jaxrs:server id="tfchenRestService" address="/tfchenRestService">
         <jaxrs:serviceBeans>
-            <ref bean="tfchenRestfulImpl" />
+            <ref bean="tfchenRestfulImpl"/>
         </jaxrs:serviceBeans>
     </jaxrs:server>
 
-    <bean id="dadeRestfulImpl" class="com.hangzhou.tfchen.webservice.Impl.DadeRestfulImpl" />
+    <bean id="dadeRestfulImpl" class="com.hangzhou.tfchen.webservice.Impl.DadeRestfulImpl"/>
     <jaxrs:server id="dadeRestService" address="/dadeRestService">
         <jaxrs:serviceBeans>
-            <ref bean="dadeRestfulImpl" />
+            <ref bean="dadeRestfulImpl"/>
         </jaxrs:serviceBeans>
     </jaxrs:server>
 
     <!-- 注入工具类 -->
-    <bean id="springApplicationContextHolder" class="com.hangzhou.tfchen.context.SpringApplicationContextHolder" />
+    <bean id="springApplicationContextHolder" class="com.hangzhou.tfchen.context.SpringApplicationContextHolder"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-        <property name="url" value="jdbc:oracle:thin:@192.168.60.36:1521:orcl" />
-        <property name="username" value="chentf" />
-        <property name="password" value="chentf" />
+        <!--
+        <property name="driverClassName" value="com.mchz.brook.jdbc.proxy.DriverLoggingProxy" />
+        <property name="url" value="jdbc:jdbcdslog:oracle:thin:@192.168.60.95:1521/wangzw;targetDriver=oracle.jdbc.OracleDriver" />
+        -->
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@192.168.60.95:1521/wangzw"/>
+        <property name="username" value="tfchen"/>
+        <property name="password" value="tfchen"/>
         <property name="maxActive" value="100"></property>
         <property name="maxIdle" value="30"></property>
         <property name="minIdle" value="5"></property>
         <property name="maxWait" value="5000"></property>
         <property name="removeAbandoned" value="true"></property>
         <property name="removeAbandonedTimeout" value="3000"></property>
-        <property name="validationQuery" value="select 1 from dual" />
+        <property name="validationQuery" value="select 1 from dual"/>
     </bean>
 
-    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-        <property name="configLocation">
-            <value>classpath:sqlMapConfig.xml</value>
-        </property>
-        <property name="dataSource" ref="dataSource" />
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:sqlmap/common/*.xml" />
+    </bean>
+
+    <!-- spring与mybatis整合配置，扫描所有dao -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.hangzhou.tfchen.common.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="save*" propagation="REQUIRED" />
-            <tx:method name="remove*" propagation="REQUIRED" />
-            <tx:method name="modify*" propagation="REQUIRED" />
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="remove*" propagation="REQUIRED"/>
+            <tx:method name="modify*" propagation="REQUIRED"/>
         </tx:attributes>
     </tx:advice>
 
     <aop:config>
-        <aop:pointcut id="txServiceMethod" expression="execution(* com.hangzhou.tfchen.dao.*.*(..))" />
-        <aop:advisor pointcut-ref="txServiceMethod" advice-ref="txAdvice" />
+        <aop:pointcut id="txServiceMethod" expression="execution(* com.hangzhou.tfchen.dao.*.*(..))"/>
+        <aop:advisor pointcut-ref="txServiceMethod" advice-ref="txAdvice"/>
     </aop:config>
 
 </beans>

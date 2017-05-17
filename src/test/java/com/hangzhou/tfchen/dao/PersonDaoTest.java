@@ -1,9 +1,10 @@
 package com.hangzhou.tfchen.dao;
 
-import com.hangzhou.tfchen.bean.Person;
-import com.hangzhou.tfchen.bean.Son;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+
+import com.hangzhou.tfchen.common.bean.Content;
+import com.hangzhou.tfchen.common.dao.ContentMapper;
+import com.hangzhou.tfchen.common.dao.IContentDao;
+import com.hangzhou.tfchen.common.service.IContentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-
-
-import java.util.Date;
-import java.util.List;
+import javax.annotation.Resource;
+import java.sql.SQLException;
 
 /**
  * @author chentf(水言Dade)
@@ -25,46 +24,17 @@ import java.util.List;
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class PersonDaoTest extends AbstractJUnit4SpringContextTests {
 
-    @Autowired
-    private IPersonDao personDao;
-
-    @Autowired
-    private ISonDao sonDao;
+    @Resource
+    private IContentDao contentDao;
 
     public PersonDaoTest() {
         // TODO Auto-generated constructor stub
     }
 
     @Test
-    public void savePersonTest() {
-        for (int i = 0; i < 10; i++) {
-            Person person = new Person();
-            person.setBirthDay(new Date());
-            person.setAge(i);
-            person.setCity("hangzhou" + i);
-            person.setName("chentf" + i);
-            person.setBirthDay(new Date());
-            personDao.savePerson(person);
-        }
+    public void testGetContent() {
+        Content res = contentDao.findContent(1);
+        System.out.println(res);
     }
-
-    @Test
-    public void findPersonWhereIdBelowTest() {
-        int id = 19838;
-        List<Person> personList = personDao.findPersonWhereIdBelow(id);
-        for (Person p : personList) {
-            System.out.println(p.getName());
-            for (int i = 0; i < 100; i++) {
-                Son son = new Son();
-                son.setAge(i);
-                son.setPersonId(p.getId());
-                son.setName("son" + i);
-//                sonDao.saveSon(son);
-            }
-        }
-    }
-
-
-
 
 }

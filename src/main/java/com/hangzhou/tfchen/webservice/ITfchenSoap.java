@@ -1,5 +1,7 @@
 package com.hangzhou.tfchen.webservice;
 
+import javax.jws.WebService;
+
 /**
  * @author chentf(水言Dade)
  * @e-mail tfchen5211@foxmail.com

@@ -21,17 +21,17 @@ import java.sql.SQLException;
 @Service
 public class UserServiceImpl implements IUserService {
 
-    @Autowired
     private IUserDao userDao;
 
     @Override
     public User doLogin(User user) throws SQLException {
         User res = null;
-        res = userDao.findUserByCondition(user);
+//        res = userDao.findUserByCondition(user);
         if (res != null) {
             // 比较密码
             String pwd = res.getPassword();
-            String pwdReal = EncypterUtil.getInstacne().jasyptDecrypt(pwd);
+//            String pwdReal = EncypterUtil.getInstacne().jasyptDecrypt(pwd);
+            String pwdReal = pwd;
             if (!StringUtils.equals(pwdReal, user.getPassword())) {
                 res = null;
             }

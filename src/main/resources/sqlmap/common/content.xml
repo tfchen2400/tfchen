@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
-<sqlMap namespace="content">
-
-    <typeAlias alias="content" type="com.hangzhou.tfchen.common.bean.Content"/>
-
-    <select id="findContent" resultClass="content">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hangzhou.tfchen.common.dao.IContentDao">
+    <select id="findContent" parameterType="Integer" resultType="com.hangzhou.tfchen.common.bean.Content">
         SELECT id, name, type, content, img, url, createDate, modifyDate
         FROM common_content
-        WHERE id = #value#
+        WHERE id = 1
     </select>
-</sqlMap>
+</mapper>

@@ -5,10 +5,7 @@ import net.sf.json.JSONObject;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author chentf(水言Dade)
@@ -32,9 +29,14 @@ public class A {
 //        mqm.put("type", "logon");
 //        ResultBean resultBean = new ResultBean();
 //        System.out.println(resultBean.hashCode());
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println(dateFormat.format(calendar.getTime()));
+
+
+        Random r1 = new Random();
+        for (int i = 0; i < 1000; i++) {
+            System.out.println(r1.nextInt(2));
+        }
+        HashMap map = new HashMap();
+
     }
 
 

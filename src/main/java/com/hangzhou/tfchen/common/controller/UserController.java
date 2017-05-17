@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.Map;
@@ -24,14 +25,10 @@ import java.util.Map;
 @Controller
 public class UserController {
 
-
     private Logger logger = Logger.getLogger(UserController.class);
 
-    @Autowired
+    @Resource
     private IContentDao contentDao;
-
-    @Autowired
-    private IUserService userService;
 
     //空构造
     public UserController() {
@@ -39,35 +36,30 @@ public class UserController {
 
     @RequestMapping("/login")
     public String loginPage(Map<String, Object> map) {
-        try {
-            Content content = contentDao.findContent(1);
-            map.put("title", content);
-        } catch (SQLException e) {
-            logger.error(e);
-            e.printStackTrace();
-        }
+        Content content = contentDao.findContent(1);
+        map.put("title", content);
         return "login";
     }
 
     @RequestMapping("/dologin")
     public String doLogin(HttpServletRequest req, User user, Map<String, Object> map) {
         String returnView = "login";
-        // 验证user
-        User temp = null;
-        try {
-            temp = userService.doLogin(user);
-            if (temp != null) {
-                req.getSession().setAttribute("userInfo", temp);
-                returnView = "redirect:/mainPage";
-            } else {
-                Content content = contentDao.findContent(1);
-                map.put("title", content);
-                map.put("msg", "用户名密码错误");
-            }
-        } catch (SQLException e) {
-            logger.error(e);
-            e.printStackTrace();
-        }
+//        // 验证user
+//        User temp = null;
+//        try {
+////            temp = userService.doLogin(user);
+//            if (temp != null) {
+//                req.getSession().setAttribute("userInfo", temp);
+//                returnView = "redirect:/mainPage";
+//            } else {
+////                Content content = contentDao.findContent(1);
+////                map.put("title", content);
+//                map.put("msg", "用户名密码错误");
+//            }
+//        } catch (SQLException e) {
+//            logger.error(e);
+//            e.printStackTrace();
+//        }
         return returnView;
     }
 

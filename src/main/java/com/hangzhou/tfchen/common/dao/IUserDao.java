@@ -12,10 +12,10 @@ import java.sql.SQLException;
  * @注意事项：
  */
 public interface IUserDao {
-    /**
-     * 根据用户名密码查找user
-     * @param user
-     * @return
-     */
-    User findUserByCondition(User user) throws SQLException;
+//    /**
+//     * 根据用户名密码查找user
+//     * @param user
+//     * @return
+//     */
+//    User findUserByCondition(User user) throws SQLException;
 }
